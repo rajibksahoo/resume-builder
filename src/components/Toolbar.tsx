@@ -54,7 +54,7 @@ export function Toolbar({ store }: { store: UseResume }) {
       const res = await fetch('/api/save-resume', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: resume.name, resume }),
+        body: JSON.stringify({ name: resume.saveName?.trim() || resume.name, resume }),
       });
       if (!res.ok) throw new Error(`Server responded ${res.status}`);
       const data = (await res.json()) as {
@@ -172,10 +172,17 @@ export function Toolbar({ store }: { store: UseResume }) {
           Export JSON
         </button>
 
+        <input
+          className="w-[150px] rounded-md border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-sm text-slate-100 placeholder:text-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500/40"
+          value={resume.saveName ?? ''}
+          placeholder={resume.name ? `Save as (${resume.name})` : 'Save as…'}
+          title="Filename base for Save (e.g. a target company). Defaults to your name."
+          onChange={(e) => store.update((d) => (d.saveName = e.target.value))}
+        />
         <button
           className={btnSave}
           disabled={save.status === 'saving'}
-          title="Save a dated version into the project and commit it"
+          title="Save a dated version (JSON + PDF) into the project and commit it"
           onClick={onSave}
         >
           {save.status === 'saving' ? 'Saving…' : '💾 Save'}

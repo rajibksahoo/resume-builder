@@ -20,6 +20,8 @@ export interface EducationEntry {
 
 export interface Resume {
   name: string;
+  /** Optional override for the saved filename base (e.g. a target company). Not rendered. */
+  saveName?: string;
   title: string;
   location: string;
   contact: {
@@ -45,6 +47,7 @@ export interface ResumeVersion {
 export function emptyResume(): Resume {
   return {
     name: '',
+    saveName: '',
     title: '',
     location: '',
     contact: { phone: '', email: '', links: [] },
