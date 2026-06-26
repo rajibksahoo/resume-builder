@@ -1,0 +1,81 @@
+{
+  "name": "Rajib Sahoo",
+  "title": "Senior Software Engineer",
+  "location": "Bangalore, Karnataka, India",
+  "contact": {
+    "phone": "+91 7207374027",
+    "email": "rajibborn2win@gmail.com",
+    "links": ["linkedin.com/in/rajibksahoo"]
+  },
+  "about": "Senior Software Engineer with 12+ years building high-scale, event-driven distributed systems for global banks. Deep expertise in Java, Spring Boot, Kafka and cloud-native microservices on Kubernetes/OpenShift. Hands-on with LLM-powered and Agentic AI workflows: RAG pipelines, MCP-based tool integration, and JVM-native AI orchestration (Spring AI / LangChain4j). Focused on resilient, observable financial-services platforms delivered from design through production.",
+  "experience": [
+    {
+      "role": "Senior Software Engineer",
+      "company": "Sberbank India",
+      "location": "Bangalore, India",
+      "start": "08/2024",
+      "end": "Present",
+      "bullets": [
+        "Architected an event-driven corporate lending platform covering the full credit lifecycle (contract orchestration, interest accrual, NPA provisioning, bill discounting) on Java 21, Spring Boot 3 and Kafka, deployed via Helm on OpenShift.",
+        "Processes ~1,000 transactions/day across 6 microservices; established API-First (GraphQL/REST) and design-pattern standards across the lending division.",
+        "Mentored 4 engineers."
+      ]
+    },
+    {
+      "role": "Technical Lead",
+      "company": "Standard Chartered",
+      "location": "Bangalore, India",
+      "start": "03/2018",
+      "end": "08/2024",
+      "bullets": [
+        "Owned architecture and delivery of NG Trade Invoice Financing using scalable microservices and event-driven workflows (Spring Boot, Kafka, GraphQL/REST) for high-throughput transaction processing.",
+        "Built a 26-class validation framework (input/database/API validators, MapStruct) and drove resilience and API-consistency standards.",
+        "[EXAMPLE, replace with a real metric: cut release-validation defects by ~35% across 10+ services]."
+      ]
+    },
+    {
+      "role": "Java Developer",
+      "company": "Mindtree",
+      "location": "Bangalore, India",
+      "start": "03/2017",
+      "end": "03/2018",
+      "bullets": [
+        "Built and maintained RESTful microservices using Java 8 and Spring Boot for an insurance-domain platform.",
+        "Implemented persistence with Spring Data JPA / Hibernate over Oracle, and wrote unit and integration tests with JUnit and Mockito.",
+        "Leveraged Java 8 streams, lambdas and the Collections framework to refactor legacy modules for readability and performance."
+      ]
+    },
+    {
+      "role": "System Engineer",
+      "company": "Tata Consultancy Services",
+      "location": "Hyderabad, India",
+      "start": "02/2014",
+      "end": "03/2017",
+      "bullets": [
+        "Developed enterprise Java web applications using Spring MVC, Hibernate and JSP/Servlets on Tomcat, delivered with Maven, for a telecommunications-domain system.",
+        "Designed and consumed REST APIs backed by DB2 with hand-tuned SQL.",
+        "Worked across the full SDLC (design, development, testing and production support), consistently delivering against tight release deadlines."
+      ]
+    }
+  ],
+  "skills": [
+    { "category": "Languages", "items": ["Java", "SQL"] },
+    { "category": "Frameworks & APIs", "items": ["Spring Boot", "Microservices", "REST APIs", "GraphQL"] },
+    { "category": "Distributed & Messaging", "items": ["Distributed Systems", "Event-Driven Architecture", "Apache Kafka", "Resilience4j"] },
+    { "category": "Data", "items": ["PostgreSQL", "Oracle", "DB2 (RDBMS)", "Redis", "Hazelcast (NoSQL / distributed cache)"] },
+    { "category": "Cloud & DevOps", "items": ["AWS", "Kubernetes", "OpenShift", "Helm", "Docker", "CI/CD"] },
+    { "category": "Observability", "items": ["Prometheus", "Grafana", "OpenTelemetry"] },
+    { "category": "AI / LLM", "items": ["LLM Integration", "RAG", "MCP", "Spring AI / LangChain4j", "AI-Augmented Development"] },
+    { "category": "Engineering & Practices", "items": ["Design Principles & Patterns", "OOD", "System Design", "BDD / Cucumber", "Agile"] }
+  ],
+  "education": [
+    {
+      "degree": "B.Tech, Electronics & Telecommunications",
+      "institution": "Biju Patnaik University of Technology, Bhubaneswar",
+      "period": "2009-2013"
+    }
+  ],
+  "certifications": ["Claude 101", "Claude Code in Action"],
+  "achievements": ["Past Vice President of Education, Standard Chartered Toastmasters Club"],
+  "languages": ["English", "Hindi"]
+}
