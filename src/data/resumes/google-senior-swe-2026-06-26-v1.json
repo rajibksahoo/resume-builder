@@ -1,0 +1,171 @@
+{
+  "name": "Rajib Sahoo",
+  "title": "Lead Software Engineer",
+  "location": "Bangalore, Karnataka, India",
+  "contact": {
+    "phone": "+91 7207374027",
+    "email": "rajibborn2win@gmail.com",
+    "links": [
+      "linkedin.com/in/rajibksahoo"
+    ]
+  },
+  "about": "Lead Software Engineer with 12+ years of experience designing high-scale distributed backend systems for global banking and financial services. Expertise in Java 21, Spring Boot, Microservices, Kafka, GraphQL, and cloud-native architecture. Experienced in leading end-to-end delivery of enterprise lending platforms while driving API governance, engineering standards, and AI-assisted software development using LLMs, RAG, and Spring AI.",
+  "experience": [
+    {
+      "role": "Lead Software Engineer",
+      "company": "Sberbank India",
+      "location": "Bangalore, India",
+      "start": "08/2024",
+      "end": "Present",
+      "bullets": [
+        "Architected and delivered a high-scale corporate lending platform covering the complete credit lifecycle, including contract orchestration, interest accrual, NPA provisioning, and bill discounting.",
+        "Built an event-driven microservices ecosystem using Java 21, Spring Boot 3, and Kafka, with automated deployments to OpenShift using Helm.",
+        "Established API-first standards across the lending division by designing and governing GraphQL and REST APIs, improving consistency, scalability, and developer productivity.",
+        "Integrated LLM-based developer tooling using Spring AI and RAG techniques to improve engineering productivity and accelerate enterprise code understanding."
+      ]
+    },
+    {
+      "role": "Technical Lead",
+      "company": "Standard Chartered",
+      "location": "Bangalore, India",
+      "start": "03/2018",
+      "end": "08/2024",
+      "bullets": [
+        "Owned the architecture and end-to-end delivery of the NG Trade Invoice Financing platform using scalable microservices and event-driven workflows.",
+        "Engineered high-throughput distributed systems with Spring Boot, Kafka, and GraphQL/REST APIs to deliver reliable and scalable transaction processing.",
+        "Drove technical design decisions, established API standards, and mentored engineers to improve system resilience, maintainability, and consistency."
+      ]
+    },
+    {
+      "role": "Java Developer",
+      "company": "Mindtree",
+      "location": "Bangalore, India",
+      "start": "03/2017",
+      "end": "03/2018",
+      "bullets": [
+        "Built and maintained RESTful microservices using Java 8 and Spring Boot for an insurance-domain platform.",
+        "Implemented persistence with Spring Data JPA / Hibernate over Oracle, and wrote unit and integration tests with JUnit and Mockito.",
+        "Leveraged Java 8 streams, lambdas, and the Collections framework to refactor legacy modules for readability and performance."
+      ]
+    },
+    {
+      "role": "System Engineer",
+      "company": "Tata Consultancy Services",
+      "location": "Hyderabad, India",
+      "start": "02/2014",
+      "end": "03/2017",
+      "bullets": [
+        "Developed enterprise Java web applications using Spring MVC, Hibernate, and JSP/Servlets on Tomcat, delivered with Maven, for a telecommunications-domain system.",
+        "Designed and consumed REST APIs backed by DB2 with hand-tuned SQL.",
+        "Worked across the full SDLC (design, development, testing, and production support), consistently delivering against tight release deadlines."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "category": "Languages",
+      "items": [
+        "Java",
+        "SQL"
+      ]
+    },
+    {
+      "category": "Frameworks & APIs",
+      "items": [
+        "Spring Boot",
+        "Spring MVC",
+        "Spring Data JPA",
+        "Hibernate",
+        "Spring Security",
+        "Microservices",
+        "REST APIs",
+        "GraphQL",
+        "OAuth2",
+        "JWT"
+      ]
+    },
+    {
+      "category": "Distributed & Messaging",
+      "items": [
+        "Distributed Systems",
+        "Event-Driven Architecture",
+        "Apache Kafka",
+        "Distributed Transactions",
+        "Saga Pattern",
+        "Resilience4j"
+      ]
+    },
+    {
+      "category": "Data",
+      "items": [
+        "PostgreSQL",
+        "Oracle",
+        "DB2 (RDBMS)",
+        "Redis",
+        "Hazelcast (NoSQL / Distributed Cache)"
+      ]
+    },
+    {
+      "category": "Cloud & DevOps",
+      "items": [
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "OpenShift",
+        "Helm",
+        "CI/CD"
+      ]
+    },
+    {
+      "category": "Observability",
+      "items": [
+        "Prometheus",
+        "Grafana",
+        "OpenTelemetry"
+      ]
+    },
+    {
+      "category": "AI / LLM",
+      "items": [
+        "LLM Integration",
+        "RAG",
+        "Spring AI",
+        "LangChain4j",
+        "MCP",
+        "AI-Augmented Development"
+      ]
+    },
+    {
+      "category": "Architecture & Engineering",
+      "items": [
+        "System Design",
+        "Distributed Architecture",
+        "Cloud-Native Architecture",
+        "Object-Oriented Design (OOD)",
+        "Design Principles & Patterns",
+        "Performance Optimization",
+        "BDD / Cucumber",
+        "Agile"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Tech, Electronics & Telecommunications",
+      "institution": "Biju Patnaik University of Technology, Bhubaneswar",
+      "period": "2009-2013"
+    }
+  ],
+  "certifications": [
+    "Oracle Certified Professional, Java",
+    "Certified Kubernetes Application Developer (CKAD) / Certified Kubernetes Administrator (CKA)"
+  ],
+  "achievements": [
+    "Past Vice President of Education, Standard Chartered Toastmasters Club"
+  ],
+  "languages": [
+    "English",
+    "Hindi"
+  ],
+  "saveName": "Google Senior SWE"
+}
