@@ -148,6 +148,7 @@ export function saveResumePlugin(): Plugin {
             const body = JSON.parse((await readBody(req)) || '{}') as {
               name?: string;
               resume?: unknown;
+              commit?: boolean;
             };
             if (!body.resume || typeof body.resume !== 'object') {
               sendJson(res, 400, { ok: false, error: 'Missing resume payload' });
@@ -175,16 +176,19 @@ export function saveResumePlugin(): Plugin {
               pdfError = e instanceof Error ? e.message : String(e);
             }
 
-            // Commit just these file(s).
+            // Commit just these file(s) — unless the caller opted out (commit: false).
+            const shouldCommit = body.commit !== false; // default true (Save button)
             let committed = false;
             let gitError: string | undefined;
-            const paths = pdf ? [jsonPath, pdfPath] : [jsonPath];
-            try {
-              await run('git', ['add', '--', ...paths]);
-              await run('git', ['commit', '-m', `Save resume: ${base}`, '--', ...paths]);
-              committed = true;
-            } catch (e) {
-              gitError = e instanceof Error ? e.message : String(e);
+            if (shouldCommit) {
+              const paths = pdf ? [jsonPath, pdfPath] : [jsonPath];
+              try {
+                await run('git', ['add', '--', ...paths]);
+                await run('git', ['commit', '-m', `Save resume: ${base}`, '--', ...paths]);
+                committed = true;
+              } catch (e) {
+                gitError = e instanceof Error ? e.message : String(e);
+              }
             }
 
             sendJson(res, 200, {
