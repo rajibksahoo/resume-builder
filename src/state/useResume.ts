@@ -55,6 +55,7 @@ export interface UseResume {
   renameVersion: (label: string) => void;
   deleteVersion: () => void;
   importResume: (resume: Resume, label: string) => void;
+  markSaved: () => void;
 }
 
 export function useResume(): UseResume {
@@ -67,10 +68,12 @@ export function useResume(): UseResume {
 
   const baselineFor = useCallback(
     (id: string): Resume => {
+      // A stored baseline (written on Save) overrides the build-time seed.
+      const stored = read<Resume>(baseKey(id));
+      if (stored) return stored;
       const seed = seedVersions.find((v) => v.id === id);
       if (seed) return clone(seed.resume);
-      const stored = read<Resume>(baseKey(id));
-      return stored ?? emptyResume();
+      return emptyResume();
     },
     [],
   );
@@ -117,7 +120,12 @@ export function useResume(): UseResume {
     });
   }, []);
 
-  const baseline = useMemo(() => baselineFor(activeId), [baselineFor, activeId]);
+  // Bumped when the stored baseline changes (e.g. after Save) so isDirty recomputes.
+  const [baselineTick, setBaselineTick] = useState(0);
+  const baseline = useMemo(
+    () => baselineFor(activeId),
+    [baselineFor, activeId, baselineTick],
+  );
   const isDirty = useMemo(
     () => JSON.stringify(resume) !== JSON.stringify(baseline),
     [resume, baseline],
@@ -126,6 +134,12 @@ export function useResume(): UseResume {
   const resetToBaseline = useCallback(() => {
     setResume(baselineFor(activeId));
   }, [activeId, baselineFor]);
+
+  // Record the current resume as the active version's baseline (clears "modified").
+  const markSaved = useCallback(() => {
+    write(baseKey(activeId), resume);
+    setBaselineTick((t) => t + 1);
+  }, [activeId, resume]);
 
   const uniqueId = useCallback(
     (label: string): string => {
@@ -217,5 +231,6 @@ export function useResume(): UseResume {
     renameVersion,
     deleteVersion,
     importResume,
+    markSaved,
   };
 }

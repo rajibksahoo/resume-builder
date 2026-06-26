@@ -7,14 +7,11 @@ import {
   TextArea,
   TextInput,
 } from './fields';
+import { ListEditor } from './ListEditor';
 
 interface Props {
   resume: Resume;
   update: (updater: (draft: Resume) => void) => void;
-}
-
-function lines(v: string): string[] {
-  return v.split('\n');
 }
 
 export function ResumeEditor({ resume, update }: Props) {
@@ -44,12 +41,12 @@ export function ResumeEditor({ resume, update }: Props) {
               onChange={(v) => update((d) => (d.contact.email = v))}
             />
           </Field>
-          <Field label="Links (one per line)">
-            <TextArea
-              rows={2}
-              value={resume.contact.links.join('\n')}
-              onChange={(v) => update((d) => (d.contact.links = lines(v)))}
+          <Field label="Links">
+            <ListEditor
+              items={resume.contact.links}
+              onChange={(items) => update((d) => (d.contact.links = items))}
               placeholder="linkedin.com/in/you"
+              addLabel="Add link"
             />
           </Field>
         </div>
@@ -136,11 +133,12 @@ export function ResumeEditor({ resume, update }: Props) {
                 </div>
               </div>
               <div className="mt-3">
-                <Field label="Bullets (one per line)">
-                  <TextArea
-                    rows={4}
-                    value={job.bullets.join('\n')}
-                    onChange={(v) => update((d) => (d.experience[i].bullets = lines(v)))}
+                <Field label="Bullets">
+                  <ListEditor
+                    items={job.bullets}
+                    onChange={(items) => update((d) => (d.experience[i].bullets = items))}
+                    placeholder="Describe an achievement or responsibility"
+                    addLabel="Add bullet"
                   />
                 </Field>
               </div>
@@ -232,27 +230,30 @@ export function ResumeEditor({ resume, update }: Props) {
       </SectionCard>
 
       {/* Simple list sections */}
-      <SectionCard title="Certifications (one per line)">
-        <TextArea
-          rows={2}
-          value={resume.certifications.join('\n')}
-          onChange={(v) => update((d) => (d.certifications = lines(v)))}
+      <SectionCard title="Certifications">
+        <ListEditor
+          items={resume.certifications}
+          onChange={(items) => update((d) => (d.certifications = items))}
+          placeholder="Certification name"
+          addLabel="Add certification"
         />
       </SectionCard>
 
-      <SectionCard title="Achievements (one per line)">
-        <TextArea
-          rows={3}
-          value={resume.achievements.join('\n')}
-          onChange={(v) => update((d) => (d.achievements = lines(v)))}
+      <SectionCard title="Achievements">
+        <ListEditor
+          items={resume.achievements}
+          onChange={(items) => update((d) => (d.achievements = items))}
+          placeholder="Achievement"
+          addLabel="Add achievement"
         />
       </SectionCard>
 
-      <SectionCard title="Languages (one per line)">
-        <TextArea
-          rows={2}
-          value={resume.languages.join('\n')}
-          onChange={(v) => update((d) => (d.languages = lines(v)))}
+      <SectionCard title="Languages">
+        <ListEditor
+          items={resume.languages}
+          onChange={(items) => update((d) => (d.languages = items))}
+          placeholder="Language"
+          addLabel="Add language"
         />
       </SectionCard>
     </div>

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import type { Resume } from '../types/resume';
 import { emptyResume } from '../types/resume';
 import type { UseResume } from '../state/useResume';
@@ -31,12 +31,50 @@ const btn =
 const btnPrimary =
   'inline-flex items-center gap-1.5 rounded-md bg-sky-600 px-3.5 py-1.5 text-sm font-semibold ' +
   'text-white shadow hover:bg-sky-500 transition';
+const btnSave =
+  'inline-flex items-center gap-1.5 rounded-md bg-emerald-600 px-3.5 py-1.5 text-sm font-semibold ' +
+  'text-white shadow hover:bg-emerald-500 transition disabled:opacity-50 disabled:cursor-not-allowed';
+
+type SaveState =
+  | { status: 'idle' }
+  | { status: 'saving' }
+  | { status: 'done'; message: string }
+  | { status: 'error'; message: string };
 
 export function Toolbar({ store }: { store: UseResume }) {
   const fileRef = useRef<HTMLInputElement>(null);
+  const [save, setSave] = useState<SaveState>({ status: 'idle' });
   const { versions, activeId, resume, isDirty } = store;
   const activeLabel = versions.find((v) => v.id === activeId)?.label ?? activeId;
   const isSeed = SEED_IDS.has(activeId);
+
+  const onSave = async () => {
+    setSave({ status: 'saving' });
+    try {
+      const res = await fetch('/api/save-resume', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: resume.name, resume }),
+      });
+      if (!res.ok) throw new Error(`Server responded ${res.status}`);
+      const data = (await res.json()) as {
+        id: string;
+        pdf: boolean;
+        committed: boolean;
+      };
+      store.markSaved();
+      const parts = [`Saved ${data.id}`, `JSON${data.pdf ? ' + PDF' : ' (PDF failed)'}`];
+      if (data.committed) parts.push('committed');
+      setSave({ status: 'done', message: parts.join(' · ') });
+      window.setTimeout(() => setSave({ status: 'idle' }), 4500);
+    } catch {
+      setSave({
+        status: 'error',
+        message: 'Save needs the dev server (npm run dev).',
+      });
+      window.setTimeout(() => setSave({ status: 'idle' }), 5000);
+    }
+  };
 
   const onImportFile = async (file: File) => {
     try {
@@ -72,6 +110,12 @@ export function Toolbar({ store }: { store: UseResume }) {
           <span className="rounded-full bg-amber-500/15 px-2 py-0.5 text-[11px] font-semibold text-amber-300">
             ● modified
           </span>
+        )}
+        {save.status === 'done' && (
+          <span className="text-[11px] font-medium text-emerald-300">{save.message}</span>
+        )}
+        {save.status === 'error' && (
+          <span className="text-[11px] font-medium text-rose-300">{save.message}</span>
         )}
       </div>
 
@@ -126,6 +170,15 @@ export function Toolbar({ store }: { store: UseResume }) {
         />
         <button className={btn} onClick={() => download(`${activeId}.json`, resume)}>
           Export JSON
+        </button>
+
+        <button
+          className={btnSave}
+          disabled={save.status === 'saving'}
+          title="Save a dated version into the project and commit it"
+          onClick={onSave}
+        >
+          {save.status === 'saving' ? 'Saving…' : '💾 Save'}
         </button>
 
         <button className={btnPrimary} onClick={() => window.print()}>
